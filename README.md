@@ -1,13 +1,76 @@
-# SKYE API
+<!-- <p align="center">
+  <a href="" rel="noopener">
+ <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
+</p> -->
 
-To install dependencies:
+<h1 align="center">SkyeAPI</h1>
 
-```bash
+<p align="center"> API framework buildt on top of express to simplify API's.
+    <br> 
+</p>
+
+## 📝 Table of Contents
+
+- [About](#about)
+- [Getting Started](#getting_started)
+- [Deployment](#deployment)
+- [Usage](#usage)
+- [Built Using](#built_using)
+- [TODO](../TODO.md)
+- [Contributing](../CONTRIBUTING.md)
+- [Authors](#authors)
+- [Acknowledgments](#acknowledgement)
+
+## 🧐 About <a name = "about"></a>
+
+Skye is all about being a simple, easy to write and fast to set up framework.
+
+## 🏁 Getting Started <a name = "getting_started"></a>
+
+### Prerequisites
+
+Install dependencies
+
+```
 bun install
 ```
 
-To run:
+---
+## Making your first api in SkyeAPI
 
-```bash
-bun run start
+More info in the [Docs]()
+
 ```
+import SkyeAPI from "./lib/skyeapi";
+
+const server = new SkyeAPI;
+server.name = "SkyeAPI";
+server.port = 8000;
+
+server.get("/", {
+    name: "Herjus"
+})
+
+server.start()
+```
+
+
+### Running the api
+
+Run in dev mode
+
+```
+Bun run dev
+```
+
+Run in production mode
+
+```
+Bun run start
+```
+
+
+## ⛏️ Built Using <a name = "built_using"></a>
+
+- [Bun](https://bun.sh/) - Runtime
+- [Express](https://expressjs.com/) - Server Framework
