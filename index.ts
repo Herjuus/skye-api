@@ -1,7 +1,11 @@
-import skyeserver from "./lib/skyeapi";
+import SkyeAPI from "./lib/skyeapi";
 
-const skye = new skyeserver;
-skye.name = "api";
-skye.port = 8000;
+const server = new SkyeAPI;
+server.name = "SkyeAPI";
+server.port = 8000;
 
-skye.start()
+server.get("/", {
+    yo: "ong"
+})
+
+server.start()
