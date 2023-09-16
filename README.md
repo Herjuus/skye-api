@@ -23,7 +23,6 @@ Install dependencies
 bun install
 ```
 
----
 ## Making your first api in SkyeAPI
 
 More info in the [Docs]()
