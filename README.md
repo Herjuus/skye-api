@@ -11,7 +11,7 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Skye is all about being a simple, easy to write and fast to set up framework.
+Skye is all about being a simple, easy to write and fast to set up.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
