@@ -11,7 +11,7 @@
 
 ## 🧐 About <a name = "about"></a>
 
-Skye is all about being a simple, easy to write and fast to set up framework.
+Skye is all about being a simple, easy to write and fast to set up.
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -23,7 +23,6 @@ Install dependencies
 bun install
 ```
 
----
 ## Making your first api in SkyeAPI
 
 More info in the [Docs]()
@@ -52,13 +51,13 @@ server.start()
 Run in dev mode
 
 ```
-Bun run dev
+bun run dev
 ```
 
 Run in production mode
 
 ```
-Bun run start
+bun run start
 ```
 
 
