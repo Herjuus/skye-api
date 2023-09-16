@@ -47,13 +47,13 @@ server.start()
 Run in dev mode
 
 ```
-Bun run dev
+bun run dev
 ```
 
 Run in production mode
 
 ```
-Bun run start
+bun run start
 ```
 
 
