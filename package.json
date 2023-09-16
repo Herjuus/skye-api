@@ -1,0 +1,19 @@
+{
+  "name": "skye-api",
+  "scripts": {
+    "dev": "bun --hot run index.ts",
+    "start": "bun run index.ts"
+  },
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "^1.0.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "author": {
+    "name": "Herjus"
+  },
+  "version": "1.0.0"
+}
