@@ -11,7 +11,7 @@ export default class SkyeAPI {
 
     constructor(){
         this.port = 3000;
-        this.name = "skye";
+        this.name = "SkyeAPI";
         this.app = Express();
     }
     
@@ -25,10 +25,20 @@ export default class SkyeAPI {
         }
     }
 
-    get(path: string, response: any){
+    get(path: string, response: Function){
         this.app.get(path, (req: any, res: any) => {
-            res.send(response);
+            res.send(response(req.query));
             log.log(`Get request recieved at ${path} with response ${response}`)
         });
+    }
+
+    post(path: string, response: Function, body: Object){
+        this.app.post(path, async(req: any, res: any) => {
+            body = req.body
+            res.send(
+                response(body)
+            )
+            log.log(`Post request recieved at ${path} with response ${response}`)
+        })
     }
 }
