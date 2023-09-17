@@ -6,4 +6,5 @@ server.get("/", function () {
     return "Hello world"
 });
 
+server.docs();
 server.start();

@@ -1,8 +1,19 @@
 import { Log } from "./log";
 import Express from "express";
 import bodyParser from "body-parser";
+import { setupReactViews } from "express-tsx-views";
+import { resolve } from "path";
 
 const log = new Log()
+
+type endpoint = {
+    type: string
+    path: string
+}
+
+type props = {
+    endpoints: endpoint[]
+}
 
 export default class SkyeAPI {
     public port: number;
@@ -11,12 +22,16 @@ export default class SkyeAPI {
     private app: any;
     private jsonParser: any;
 
+    endpoints: endpoint[];
+
     constructor(){
         this.port = 8000;
         this.name = "SkyeAPI";
         this.app = Express();
         this.jsonParser = bodyParser.json();
+        this.endpoints = [];
     }
+
     start(){
         try {
             this.app.listen(this.port, () => {
@@ -27,19 +42,47 @@ export default class SkyeAPI {
         }
     }
 
+    async docs(){
+        try {
+            setupReactViews(this.app, {
+                viewsDirectory: resolve(__dirname, "views"),
+                prettify: true, // Prettify HTML output
+            });
+            const endpoints = this.endpoints;
+            this.get(`/docs/data`, function () {
+                return endpoints;
+            });
+            this.app.get("/docs", (req: any, res: any) => {
+                res.render("docs", {endpoints: endpoints});
+            })
+        } catch {
+            log.error(`Failed to run docs.`)
+        }
+    }
+
     get(path: string, response: Function){
+        const object: endpoint = {
+            type: "GET",
+            path: path,
+        }
+        this.endpoints.push(object)
         this.app.get(path, this.jsonParser, (req: any, res: any) => {
             res.send(response(req.query));
-            log.log(`Get request recieved at ${path} from ${req.ip}`)
+            log.log(`GET request recieved at ${path} from ${req.ip}`)
         });
     }
 
     post(path: string, response: Function){
+        const object: endpoint = {
+            type: "POST",
+            path: path,
+        }
+        this.endpoints.push(object)
         this.app.post(path, this.jsonParser, async(req: any, res: any) => {
             let body = await req.body;
             console.log(body)
             await res.send(response(body))
-            log.log(`Post request recieved at ${path} from ${req.ip}`)
+            log.log(`POST request recieved at ${path} from ${req.ip}`)
         })
     }
 }
