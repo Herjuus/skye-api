@@ -1,67 +1,39 @@
-<!-- <p align="center">
-  <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
-</p> -->
+---
+layout:
+  title:
+    visible: true
+  description:
+    visible: false
+  tableOfContents:
+    visible: true
+  outline:
+    visible: true
+  pagination:
+    visible: true
+---
 
-<h1 align="center">SkyeAPI</h1>
+# Welcome!
 
-<p align="center"> API framework buildt on top of express to simplify API's.
-    <br> 
-</p>
+## Welcome to SkyeAPI
 
-## 🧐 About <a name = "about"></a>
+Welcome to SkyeAPI! Here you'll find all the documentation you need to get up and running.
 
-Skye is all about being a simple, easy to write and fast to set up.
+### What is SkyeAPI
 
-## 🏁 Getting Started <a name = "getting_started"></a>
+Skye is an API framework running on bun and express with typescript. I made Skye to simplify and speed up the process of making API's in typescript.
 
-### Prerequisites
+## Want to jump right in?
 
-Install dependencies
+Feeling like an eager beaver? Jump into the quick start docs and get making your first API in Skye:
 
-```
-bun install
-```
+{% content-ref url="quick-start.md" %}
+[quick-start.md](quick-start.md)
+{% endcontent-ref %}
 
-## Making your first api in SkyeAPI
+## Want to dive deep?
 
-More info in the [Docs]()
+Find more about how you can use the different functions in Skye:
 
-```
-import SkyeAPI from "./lib/skyeapi";
-import { getData } from "./functions";
-
-const server = new SkyeAPI;
-server.name = "SkyeAPI";
-server.port = 8000;
-
-server.get("/", {
-    image: "blablabla",
-    id: 12,
-})
-
-server.get("/data", getData())
-
-server.start()
-```
-
-
-### Running the api
-
-Run in dev mode
-
-```
-bun run dev
-```
-
-Run in production mode
-
-```
-bun run start
-```
-
-
-## ⛏️ Built Using <a name = "built_using"></a>
-
-- [Bun](https://bun.sh/) - Runtime
-- [Express](https://expressjs.com/) - Server Framework
+{% content-ref url="reference/functions/" %}
+[functions](reference/functions/)
+{% endcontent-ref %}
