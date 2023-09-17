@@ -1,6 +1,5 @@
 import SkyeAPI from "./lib/skyeapi";
 import { getData } from "./functions";
-import { serve } from "bun";
 
 type QueryType = {
     message: string,
