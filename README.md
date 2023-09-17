@@ -17,6 +17,12 @@ Skye is all about being a simple, easy to write and fast to set up.
 
 ### Prerequisites
 
+Start project
+
+```
+bun create herjuus/skyeapi <target dir>
+```
+
 Install dependencies
 
 ```
@@ -31,14 +37,12 @@ More info in the [Docs]()
 import SkyeAPI from "./lib/skyeapi";
 
 const server = new SkyeAPI;
-server.name = "SkyeAPI";
-server.port = 8000;
 
-server.get("/", {
-    name: "Herjus"
-})
+server.get("/", function () {
+    return "Hello world"
+});
 
-server.start()
+server.start();
 ```
 
 
