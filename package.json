@@ -1,8 +1,8 @@
 {
-  "name": "skye-api",
+  "name": "skyeapi",
   "scripts": {
-    "dev": "bun --hot run index.ts",
-    "start": "bun run index.ts"
+    "dev": "bun --hot index.ts",
+    "start": "bun index.ts"
   },
   "module": "index.ts",
   "type": "module",

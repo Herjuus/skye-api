@@ -12,7 +12,7 @@ export default class SkyeAPI {
     private jsonParser: any;
 
     constructor(){
-        this.port = 3000;
+        this.port = 8000;
         this.name = "SkyeAPI";
         this.app = Express();
         this.jsonParser = bodyParser.json();
