@@ -51,13 +51,13 @@ server.start();
 Run in dev mode
 
 ```
-bun run dev
+bun dev
 ```
 
 Run in production mode
 
 ```
-bun run start
+bun start
 ```
 
 
