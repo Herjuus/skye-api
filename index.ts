@@ -1,5 +1,6 @@
 import SkyeAPI from "./lib/skyeapi";
 import { getData } from "./functions";
+import { serve } from "bun";
 
 type QueryType = {
     message: string,
@@ -13,9 +14,13 @@ server.get("/data", getData)
 
 server.get("/data2", function (query: QueryType) {
     return {
-        ait: "ait",
+        data: "data",
         query: query.message,
     }
+})
+
+server.post("/", function (body: any){
+    return body
 })
 
 server.start()

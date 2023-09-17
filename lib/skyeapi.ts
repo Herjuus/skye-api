@@ -1,5 +1,6 @@
 import { Log } from "./log";
 import Express from "express";
+import bodyParser from "body-parser";
 
 const log = new Log()
 
@@ -8,13 +9,14 @@ export default class SkyeAPI {
     public name: string;
 
     private app: any;
+    private jsonParser: any;
 
     constructor(){
         this.port = 3000;
         this.name = "SkyeAPI";
         this.app = Express();
+        this.jsonParser = bodyParser.json();
     }
-    
     start(){
         try {
             this.app.listen(this.port, () => {
@@ -26,19 +28,18 @@ export default class SkyeAPI {
     }
 
     get(path: string, response: Function){
-        this.app.get(path, (req: any, res: any) => {
+        this.app.get(path, this.jsonParser, (req: any, res: any) => {
             res.send(response(req.query));
-            log.log(`Get request recieved at ${path} with response ${response}`)
+            log.log(`Get request recieved at ${path} from ${req.ip}`)
         });
     }
 
-    post(path: string, response: Function, body: Object){
-        this.app.post(path, async(req: any, res: any) => {
-            body = req.body
-            res.send(
-                response(body)
-            )
-            log.log(`Post request recieved at ${path} with response ${response}`)
+    post(path: string, response: Function){
+        this.app.post(path, this.jsonParser, async(req: any, res: any) => {
+            let body = await req.body;
+            console.log(body)
+            await res.send(response(body))
+            log.log(`Post request recieved at ${path} from ${req.ip}`)
         })
     }
 }
