@@ -11,10 +11,6 @@ type endpoint = {
     path: string
 }
 
-type props = {
-    endpoints: endpoint[]
-}
-
 export default class SkyeAPI {
     public port: number;
     public name: string;
