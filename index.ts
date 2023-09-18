@@ -2,9 +2,9 @@ import SkyeAPI from "./lib/skyeapi";
 
 const server = new SkyeAPI;
 
-server.get("/", function () {
-    return "Hello world"
+server.get("/", function (query: any) {
+    return query.message
 });
 
-server.docs();
+server.docs("/docs");
 server.start();
