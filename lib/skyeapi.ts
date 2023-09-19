@@ -2,14 +2,9 @@ import { Log } from "./log";
 import Express from "express";
 import bodyParser from "body-parser";
 import swaggerUI from 'swagger-ui-express';
-import swaggerDocument from 'swagger-ui-express';
+import swaggerDocument from "swagger-ui-express";
 
 const log = new Log()
-
-type endpoint = {
-    type: string
-    path: string
-}
 
 export default class SkyeAPI {
     public port: number;
@@ -35,8 +30,9 @@ export default class SkyeAPI {
         }
     }
 
-    async docs(path: string){
-        this.app.use(path, swaggerUI.serve, swaggerUI.setup(swaggerDocument))
+    docs(path: string){
+        
+        this.app.use(path, swaggerUI.serve, swaggerUI.setup(swaggerDocument));
     }
 
     get(path: string, response: Function){
