@@ -6,5 +6,6 @@ server.get("/", function (query: any) {
     return query.message
 });
 
-server.docs("/docs");
+server.react_page("/docs", "docs", { message: "yo" })
+
 server.start();
