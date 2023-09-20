@@ -2,7 +2,8 @@ import { Log } from "./log";
 import Express from "express";
 import bodyParser from "body-parser";
 import { resolve } from "path";
-import { setupReactViews } from "express-tsx-views";
+import fs from "fs";
+import { renderToString } from "react-dom/server";
 
 const log = new Log()
 
@@ -12,21 +13,17 @@ export default class SkyeAPI {
 
     private app: any;
     private jsonParser: any;
-    private reactviews: void;
 
     constructor(){
         this.port = 8000;
         this.name = "SkyeAPI";
         this.app = Express();
         this.jsonParser = bodyParser.json();
-        this.reactviews = setupReactViews(this.app, {
-            viewsDirectory: resolve(__dirname, "..", "pages"),
-            prettify: true,
-        });
     }
 
     start(){
         try {
+            this.app.use(Express.static(resolve(__dirname, "..", "public")));
             this.app.listen(this.port, () => {
                 log.log(`${this.name} running on port ${this.port}...`);
             });
@@ -55,10 +52,21 @@ export default class SkyeAPI {
         });
     }
 
-    react_page(path: string, page: string, props?: any){
+    react_page(path: string, page: any){
         this.app.get(path, (req: any, res: any) => {
-            res.render(page, props);
-            log.log(`React request recieved at ${path} from ${req.ip}`)
+            // res.render(page, props);
+            fs.readFile(resolve(__dirname, "..", "public/index.html"), "utf8", (err, data) => {
+                if (err) {
+                    return res.status(500).send("An error occurred");
+                }
+                return res.send(
+                    data.replace(
+                        '<div id="root"></div>',
+                        `<div id="root">${renderToString(page)}</div>`
+                    )
+                );
+            });
         });
     }
 }
+// log.log(`React page request recieved at ${path} from ${req.ip}`)
