@@ -23,7 +23,7 @@ export default class SkyeAPI {
 
     start(){
         try {
-            this.app.use(Express.static(resolve(__dirname, "..", "public")));
+            this.app.use(Express.static(resolve(__dirname, "..", "src")));
             this.app.listen(this.port, () => {
                 log.log(`${this.name} running on port ${this.port}...`);
             });
@@ -31,10 +31,6 @@ export default class SkyeAPI {
             log.error(`Failed to start server. Is port ${this.port} in use?`)
         }
     }
-
-    // docs(path: string){
-
-    // }
 
     get(path: string, response: Function){
         this.app.get(path, this.jsonParser, (req: any, res: any) => {
@@ -55,7 +51,8 @@ export default class SkyeAPI {
     react_page(path: string, page: any){
         this.app.get(path, (req: any, res: any) => {
             // res.render(page, props);
-            fs.readFile(resolve(__dirname, "..", "public/index.html"), "utf8", (err, data) => {
+            log.log(`React page request recieved at ${path} from ${req.ip}`)
+            fs.readFile(resolve(__dirname, "..", "src/index.html"), "utf8", (err, data) => {
                 if (err) {
                     return res.status(500).send("An error occurred");
                 }
@@ -69,4 +66,3 @@ export default class SkyeAPI {
         });
     }
 }
-// log.log(`React page request recieved at ${path} from ${req.ip}`)

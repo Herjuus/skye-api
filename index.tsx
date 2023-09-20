@@ -1,6 +1,6 @@
 import SkyeAPI from "./lib/skyeapi";
-import Docs from "./pages/docs";
 import React from "react";
+import Docs from "./src/pages/docs";
 
 const server = new SkyeAPI;
 

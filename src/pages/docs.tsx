@@ -7,7 +7,7 @@ type props = {
 export default function Docs(props: props){
     return(
         <main>
-            <span>yo</span>
+            <span>{props.message}</span>
         </main>
     )
 }
