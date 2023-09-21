@@ -21,6 +21,8 @@ export default class SkyeAPI {
     private jsonParser: any;
 
     private getendpoints: Array<endpoint>;
+    private postendpoints: Array<endpoint>;
+    private reactendpoints: Array<endpoint>;
 
     constructor(){
         this.port = 8000;
@@ -28,6 +30,8 @@ export default class SkyeAPI {
         this.app = Express();
         this.jsonParser = bodyParser.json();
         this.getendpoints = [];
+        this.postendpoints = [];
+        this.reactendpoints = [];
     }
 
     start(){
@@ -42,7 +46,7 @@ export default class SkyeAPI {
     }
 
     docs(path: string){
-        this.react_page("/docs", <Docs title={this.name} getendpoints={this.getendpoints}/>);
+        this.react_page("/docs", <Docs title={this.name} getendpoints={this.getendpoints} postendpoints={this.postendpoints} reactendpoints={this.reactendpoints}/>);
     }
 
     get(path: string, response: Function){
@@ -54,17 +58,17 @@ export default class SkyeAPI {
     }
 
     post(path: string, response: Function){
+        this.postendpoints.push({ path: path})
         this.app.post(path, this.jsonParser, async(req: any, res: any) => {
             let body = await req.body;
-            // console.log(body)
             await res.send(response(body))
             log.log(`POST request received at ${path} from ${req.ip}`)
         });
     }
 
     react_page(path: string, page: any){
+        this.reactendpoints.push({ path: path})
         this.app.get(path, (req: any, res: any) => {
-            // res.render(page, props);
             log.log(`React page request received at ${path} from ${req.ip}`)
             fs.readFile(resolve(__dirname, "..", "src/index.html"), "utf8", (err, data) => {
                 if (err) {
