@@ -52,16 +52,20 @@ export default class SkyeAPI {
     get(path: string, response: Function){
         this.getendpoints.push({ path: path})
         this.app.get(path, this.jsonParser, (req: any, res: any) => {
-            res.send(response(req.query));
+            res.send(response(req.query, req.params, res));
             log.log(`GET request received at ${path} from ${req.ip}`)
         });
+    }
+
+    redirect(targeturl: string, res: any){
+        res.status(301).redirect(targeturl)
     }
 
     post(path: string, response: Function){
         this.postendpoints.push({ path: path})
         this.app.post(path, this.jsonParser, async(req: any, res: any) => {
             let body = await req.body;
-            await res.send(response(body))
+            await res.send(response(body, res))
             log.log(`POST request received at ${path} from ${req.ip}`)
         });
     }
