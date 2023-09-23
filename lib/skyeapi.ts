@@ -45,9 +45,9 @@ export default class SkyeAPI {
         }
     }
 
-    docs(path: string){
-        this.react_page("/docs", <Docs title={this.name} getendpoints={this.getendpoints} postendpoints={this.postendpoints} reactendpoints={this.reactendpoints}/>);
-    }
+    // docs(path: string){
+    //     this.react_page("/docs", <Docs title={this.name} getendpoints={this.getendpoints} postendpoints={this.postendpoints} reactendpoints={this.reactendpoints}/>);
+    // }
 
     get(path: string, response: Function){
         this.getendpoints.push({ path: path})
