@@ -3,7 +3,7 @@
     "builds": [
       {
         "src": "index.tsx",
-        "use": "@bun"
+        "use": "@now/bun"
       }
     ],
     "routes": [
