@@ -3,7 +3,7 @@
     "builds": [
       {
         "src": "index.tsx",
-        "use": "@now/bun"
+        "use": "@vercel/node"
       }
     ],
     "routes": [
