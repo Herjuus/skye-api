@@ -1,4 +1,4 @@
-import SkyeAPI from "./lib/skyeapi.ts";
+import SkyeAPI from "../lib/skyeapi.ts";
 
 const server = new SkyeAPI;
 
