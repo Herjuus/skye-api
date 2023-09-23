@@ -3,7 +3,7 @@
     "builds": [
       {
         "src": "index.tsx",
-        "use": "@vercel/node"
+        "use": "@now/node"
       }
     ]
   }
