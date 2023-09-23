@@ -1,11 +1,11 @@
-import { Log } from "./log.ts";
+import { Log } from "./log";
 import Express from "express";
 import bodyParser from "body-parser";
 import { resolve } from "path";
 import fs from "fs";
 import { renderToString } from "react-dom/server";
 import React from "react";
-import Docs from "../src/pages/docs.tsx";
+import Docs from "../src/pages/docs";
 
 const log = new Log()
 
@@ -45,8 +45,12 @@ export default class SkyeAPI {
         }
     }
 
-    docs(path: string){
-        this.react_page("/docs", <Docs title={this.name} getendpoints={this.getendpoints} postendpoints={this.postendpoints} reactendpoints={this.reactendpoints}/>);
+    docs(path?: string){
+        let setpath = "/docs"
+        if (path) {
+            setpath = path
+        }
+        this.react_page(setpath, <Docs title={this.name} getendpoints={this.getendpoints} postendpoints={this.postendpoints} reactendpoints={this.reactendpoints}/>);
     }
 
     get(path: string, response: Function){
