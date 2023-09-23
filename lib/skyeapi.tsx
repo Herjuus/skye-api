@@ -1,11 +1,11 @@
-import { Log } from "./log";
+import { Log } from "./log.ts";
 import Express from "express";
 import bodyParser from "body-parser";
 import { resolve } from "path";
 import fs from "fs";
 import { renderToString } from "react-dom/server";
 import React from "react";
-import Docs from "../src/pages/docs";
+import Docs from "../src/pages/docs.tsx";
 
 const log = new Log()
 
