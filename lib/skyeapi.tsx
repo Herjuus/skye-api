@@ -74,10 +74,11 @@ export default class SkyeAPI {
         });
     }
 
-    react_page(path: string, page: any){
+    react_page(path: string, Page: any, props?: Function){
         this.reactendpoints.push({ path: path})
         this.app.get(path, (req: any, res: any) => {
             log.log(`React page request received at ${path} from ${req.ip}`)
+            const newpage = <Page {...props && {...props(req.query, req.params, res)}}/>
             fs.readFile(resolve(__dirname, "..", "src/index.html"), "utf8", (err, data) => {
                 if (err) {
                     return res.status(500).send("An error occurred");
@@ -85,7 +86,7 @@ export default class SkyeAPI {
                 return res.send(
                     data.replace(
                         '<div id="root"></div>',
-                        `<div id="root">${renderToString(page)}</div>`
+                        `<div id="root">${renderToString(newpage)}</div>`
                     )
                 );
             });
